@@ -11,6 +11,9 @@ vendingMachine.setStates(states);
 vendingMachine.setTransitions(transitions);
 
 console.log(vendingMachine.processInput([40, 20]));
+console.log('------------------------------------------------------------\n');
 console.log(vendingMachine.processInput([20, 20]));
+console.log('------------------------------------------------------------\n');
 console.log(vendingMachine.processInput([20, 20, 20]));
+console.log('------------------------------------------------------------\n');
 console.log(vendingMachine.processInput([40, 40, 40]));

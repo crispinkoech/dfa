@@ -1,3 +1,5 @@
+const iceCreams = require('./extras');
+
 class DFA {
     constructor() {
         // Use Arrays or Sets or Maps?
@@ -45,13 +47,21 @@ class DFA {
         try {
             const dfa = this;
 
+	        console.log(`Input String: ${inputString}\n`);
+
             const { total, state: resultingState } = inputString.reduce(({ total, state }, token) => {
                 const { tokenValue, nextState } = dfa.changeState(token, state);
+
+		        console.log(`State: ${state} | Value: ${total}`);
+		        console.log(`Input: ${token} => Move to State: ${nextState}\n`);
+
                 return {
                     total: total + tokenValue,
                     state: nextState
                 };
             }, { total: 0, state: dfa.startingState.state });
+
+	        console.log(`State: ${resultingState} | Value: ${total}`);
 
             const { action } = [...dfa.states].find(({ state }) => state === resultingState);
 
@@ -59,12 +69,13 @@ class DFA {
                 return {
                     action,
                     Amount: total,
+                    result: iceCreams(total),
                 };
             } else {
                 return {
                     action,
-                    message: 'Input rejected',
                     Amount: total,
+                    result: 'Input rejected',
                 };
             }
         } catch (err) {
